@@ -7,6 +7,22 @@ resource "aws_instance" "mysql" {
   availability_zone = "${var.availabilityZone}"
   key_name = "${aws_key_pair.romikey-tf.key_name}"
 
+  
+
+ # provisioner "file" {
+ #   source = "ec2mysql.sh"
+ #   destination = "~/ec2mysql.sh"
+ # }
+ # provisioner "remote-exec" {
+ #   inline = [
+ #     "chmod + x ~/ec2mysql.sh",
+ #     "sudo ~/ec2mysql.sh"
+ #   ]
+ # }
+  
+ # connection {
+ #   user = "${var.instanceUsername}"
+  
   tags = {
     Name= "hactiv8-project-MYSQL"
     }
