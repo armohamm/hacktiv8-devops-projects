@@ -12,4 +12,7 @@
 
 
 #KEYFILES
-terrafom/keys/romi-afrizal.*
+terrafom/keys/*.pub
+terrafom/keys/*.pem
+*.pub
+*.pem
