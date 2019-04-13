@@ -7,3 +7,12 @@
 
 # .tfvars files
 *.tfvars
+
+#ETC FILES
+
+
+#KEYFILES
+terrafom/keys/*.pub
+terrafom/keys/*.pem
+*.pub
+*.pem

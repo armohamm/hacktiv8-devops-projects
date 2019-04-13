@@ -6,6 +6,25 @@ resource "aws_instance" "wordpress" {
   availability_zone = "${var.availabilityZone}"
   key_name = "${aws_key_pair.romikey-tf.key_name}"
 
+  subnet_id = "${aws_subnet.hacktiv8-project-subnet.id}"
+  vpc_security_group_ids = ["${aws_security_group.hacktiv8-project-sg.id}"]
+
+  provisioner "file" {
+    source = "etc/ec2wordpress.sh"
+    destination = "/tmp/ec2wordpress.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo chmod +x /tmp/ec2wordpress.sh",
+      "sudo /tmp/ec2wordpress.sh"
+    ]
+  }
+
+  connection {
+    user = "${var.instanceUsername}"
+    private_key = "${file("${var.PATH_TO_PRIVATE_KEY}")}"
+  }
   tags = {
         Name= "hactiv8-project-WP-${count.index}"
     }
