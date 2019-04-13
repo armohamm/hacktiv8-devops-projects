@@ -18,6 +18,7 @@ health_check {
     interval = 30
 }
 
+instances = ["${aws_instance.wordpress.*.id}"]
 cross_zone_load_balancing = true
 connection_draining = true
 connection_draining_timeout = 400
